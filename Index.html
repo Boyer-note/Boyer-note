@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midnight Note</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://example.com/dark-winter-road.jpg'); /* Replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .note {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: flicker 1s infinite;
+        }
+        .note p {
+            margin: 0;
+            font-size: 1.2em;
+            line-height: 1.6em;
+            text-align: justify;
+        }
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+            }
+        }
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            background: transparent url('https://example.com/rain.gif') repeat; /* Replace with actual rain GIF URL */
+            background-size: cover;
+            opacity: 0.5;
+        }
+        /* Hide the admin panel */
+        #admin {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay"></div>
+        <div class="note">
+            <p>Your note goes here. This is where you can write anything you want others to read.</p>
+        </div>
+        <div class="rain"></div>
+    </div>
+
+    <!-- Admin panel for editing content -->
+    <div id="admin">
+        <textarea id="editor" rows="10" cols="50"></textarea>
+        <button onclick="updateNote()">Update Note</button>
+    </div>
+
+    <script>
+        // JavaScript for updating the note content
+        function updateNote() {
+            var content = document.getElementById('editor').value;
+            document.querySelector('.note p').innerHTML = content;
+        }
+    </script>
+</body>
+</html>
